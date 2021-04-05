@@ -1,0 +1,44 @@
+.userData {
+  margin: 50px 0;
+  color: #f6f6f6;
+  background-color: #30363d;
+  padding: 50px;
+  border-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name {
+  color: #c0c0c0;
+}
+
+.followers {
+  display: flex;
+  width: 230px;
+  justify-content: space-between;
+  margin-bottom: -20px;
+}
+
+.userImg {
+  width: 340px;
+}
+
+.links {
+  text-decoration: none;
+  color: #f6f6f6;
+}
+
+.links:hover {
+  color: #5f5e5e;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projectsTitle {
+  color: #a09e9e;
+}

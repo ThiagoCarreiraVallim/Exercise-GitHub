@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { searchUserName } from '../action';
+import logo from '../images/github-logo-white.png';
+import './Search.css';
 
 class Search extends Component {
   constructor(props) {
@@ -29,19 +31,25 @@ class Search extends Component {
     const { userName } = this.state;
     const { list } = this.props;
     return (
-      <div>
-        <form>
-          <h1>Pesquise o usuário</h1>
-          <input
-            type="text"
-            value={ userName }
-            onChange={ this.handlerInput }
-            name="userName"
-          />
-          <button type="button" onClick={ this.sendSearch }>Pesquisar</button>
-        </form>
+      <div className="searchPage">
         <div>
-          { list.map((user) => <Link to={`/user/${user.login}`}><div>{user.login}</div></Link>) }
+          <img src={ logo } className="logo" />
+          <form>
+            <h1>Pesquise o usuário</h1>
+            <div className="inputForm">
+              <input
+                type="text"
+                value={ userName }
+                onChange={ this.handlerInput }
+                name="userName"
+              />
+              <div className="buttonFake" onClick={ this.sendSearch }>Pesquisar</div>
+            </div>
+          </form>
+          <div className="results">
+            { list.length > 0 ? <h3>Usuários encontrados</h3> : null }
+            { list.map((user) => <Link to={`/user/${user.login}`} key={ user.login } className="linkUser"><div>{user.login}</div></Link>) }
+          </div>
         </div>
       </div>
     );

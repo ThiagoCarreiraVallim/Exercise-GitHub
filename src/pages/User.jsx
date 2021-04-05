@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { requestUser, requestRepo } from '../services/requestAPI';
+import './User.css'
 
 class User extends Component {
   constructor(props) {
@@ -37,27 +38,28 @@ class User extends Component {
 
   render() {
     const { loading, user, projects } = this.state;
-    console.log(projects);
     if (loading) return <h3>Loading</h3>
     return (
-      <div>
+      <div className="userData">
         <h1>Dados do Usuário</h1>
-        <h2>Nome: { user.name }</h2>
-        <img src={ user.avatar_url } alt="Avatar do usuário" />
-        <p>Seguindo: { user.following }</p>
-        <p>Seguidores: { user.followers }</p>
+        <h2 className="name">{ user.name }</h2>
+        <img className="userImg" src={ user.avatar_url } alt="Avatar do usuário" />
+        <div className="followers">
+          <p>Seguindo: { user.following }</p>
+          <p>Seguidores: { user.followers }</p>
+        </div>
         <p>Endereço: { user.location }</p>
-        <a href={ user.html_url }>Link do perfil</a>
-        <div>
+        <a className="links" href={ user.html_url }>Link do perfil</a>
+        <div className="projects">
           <h2>Projetos</h2>
           {
             projects ? projects.map((project) => {
               return (
-                <div>
-                  <h3>{ project.name }</h3>
-                  <p>{ project.description }</p>
-                  <p>{ project.language }</p>
-                  <a href={ project.html_url }>Link do repositório</a>
+                <div key={ project.name } className="projects">
+                  <h3 className="projectsTitle">{ project.name }</h3>
+                  {project.description && <p>{ project.description }</p>}
+                  {project.language && <p>{ project.language }</p>}
+                  <a className="links" href={ project.html_url }>Link do repositório</a>
                 </div>
               );
             }) : <span>Loading...</span>
